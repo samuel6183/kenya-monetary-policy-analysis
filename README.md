@@ -1,77 +1,100 @@
-# kenya-monetary-policy-analysis
-Empirical analysis of Kenya's monetary policy and macroeconomic indicators
-## Project Overview
+<div align="center">
 
-This project investigates the relationship between monetary policy decisions and macroeconomic outcomes in Kenya.
-It examines how changes in the Central Bank Rate (CBR), Treasury bill yields, commercial lending rates and inflation interact over time.
-The research uses empirical data, statistical methods and econometric modelling to investigate monetary policy transmission and its implications for the Kenyan economy.
-## Research Objectives
+# Kenya Monetary Policy Analysis
 
-1. Examine the historical evolution of monetary policy in Kenya.
-2. Analyse the relationship between the Central Bank Rate and commercial lending rates.
-3. Investigate the relationship between monetary policy and inflation.
-4. Examine the interaction between Treasury bill yields and monetary policy.
-5. Evaluate the statistical properties and relationships of selected macroeconomic variables.
-6. Develop econometric models to investigate monetary policy transmission.
+### Applied Econometrics & Macroeconomic Intelligence
 
-## Data Sources
-The project will prioritise publicly available data from:
+![Python: Research](https://img.shields.io/badge/Python-Research-3776ab?style=for-the-badge) ![Pandas: Time series](https://img.shields.io/badge/Pandas-Time%20series-150458?style=for-the-badge) ![Statsmodels: Econometrics](https://img.shields.io/badge/Statsmodels-Econometrics-6941c6?style=for-the-badge) ![Domain: Monetary policy](https://img.shields.io/badge/Domain-Monetary%20policy-0f766e?style=for-the-badge) ![Status: In progress](https://img.shields.io/badge/Status-In%20progress-b7791f?style=for-the-badge)
 
-- Central Bank of Kenya (CBK)
-- Kenya National Bureau of Statistics (KNBS)
-- World Bank
-- International Monetary Fund (IMF)
+**Investigating monetary policy transmission in Kenya using monthly macroeconomic and financial data.**
 
-## Technology Stack
+[Analysis scaffold](src/analysis.py) · [Data directories](data/) · [CivicLens Africa](https://github.com/samuel6183/CivicLens-Africa)
 
-- Python
-- Pandas
-- NumPy
-- SciPy
-- Statsmodels
-- Plotly
-- Matplotlib
-- Jupyter Notebook / Google Colab
+</div>
 
-## Methodology
+---
 
-The empirical research will involve:
+## What this project investigates
 
-- Data acquisition and validation
-- Data cleaning and preprocessing
-- Exploratory data analysis
-- Descriptive statistics
-- Time-series analysis
-- Stationarity testing
-- Regression analysis
-- Diagnostic testing
-- Economic interpretation
+The research examines how changes in the Central Bank Rate, Treasury bill yields, commercial lending rates and inflation interact over time.
 
-## Research Period
+> How do monetary policy adjustments relate to commercial lending costs and inflation? What role do short-term government securities play in the transmission mechanism?
 
-Target period: November 2016 – October 2026, subject to data availability.
+**Target study period:** November 2016 – October 2026, subject to verified data availability.
 
-## Project Status
+## Research workstreams
 
-Currently under development.
+| Workstream | Research objective |
+| :--- | :--- |
+| Monetary policy | Examine historical movements in policy rates and liquidity conditions |
+| Banking transmission | Analyse the relationship between the CBR and commercial lending rates |
+| Inflation | Investigate the relationship between monetary policy and consumer prices |
+| Government securities | Examine interactions between Treasury bill yields and monetary policy |
+| Econometric modelling | Evaluate time-series properties, estimate relationships and conduct diagnostic tests |
+
+## Planned dataset
+
+| Variable | Intended source | Frequency |
+| :--- | :--- | :--- |
+| Central Bank Rate | [CBK](https://www.centralbank.go.ke/) | Monthly |
+| Commercial lending rates | CBK | Monthly |
+| Interbank rate | CBK | Monthly |
+| 91-, 182- and 364-day Treasury bill yields | CBK | Monthly |
+| Consumer price index and inflation | [KNBS](https://www.knbs.or.ke/) | Monthly |
+
+World Bank and IMF data may supplement the analysis where definitions and frequencies are compatible.
+
+## Analytical methodology
+
+```mermaid
+flowchart LR
+  A[Official sources] --> B[Validation]
+  B --> C[Monthly dataset]
+  C --> D[Exploratory analysis]
+  D --> E[Stationarity and model selection]
+  E --> F[Estimation and diagnostics]
+  F --> G[Economic interpretation]
+```
+
+Planned techniques include descriptive statistics, time-series plots, stationarity testing, regression and appropriate dynamic econometric models. Model choice will depend on the actual data properties; causal claims require additional identification assumptions.
+
+## Repository structure
+
+```text
+data/
+  raw/          Original source files
+  processed/    Validated monthly datasets
+notebooks/      Research notebooks
+src/
+  analysis.py   Analysis scaffold
+outputs/
+  figures/      Generated charts
+  tables/       Statistical outputs
+requirements.txt
+```
+
+## Reproducibility
+
+```bash
+python -m venv .venv
+# Activate the virtual environment for your OS.
+pip install -r requirements.txt
+```
+
+The repository currently contains the research scaffold, not the complete empirical pipeline. Verified data, notebooks and final results have not yet been uploaded. No statistical conclusions are presented as established findings.
+
+## Development milestones
+
+- [x] Define research objectives and organize repository
+- [x] Identify primary institutional data sources
+- [ ] Publish verified data and source documentation
+- [ ] Complete exploratory analysis and stationarity checks
+- [ ] Estimate and validate models
+- [ ] Publish figures, tables and reproducibility instructions
 
 ## Researcher
 
-**Samuel Ndungu Njoroge**
+**Samuel Ndungu Njoroge**  
+BSc Actuarial Science · MSc Data Science (in progress)
 
-BSc Actuarial Science | MSc Data Science
-
-GitHub: https://github.com/samuel6183
-
-## Repository layout
-
-- `data/raw/`: original source files, kept unchanged.
-- `data/processed/`: validated and merged datasets.
-- `notebooks/`: exploratory and reproducible analysis notebooks.
-- `src/`: reusable analysis code.
-- `outputs/figures/` and `outputs/tables/`: generated research outputs.
-- `requirements.txt`: Python dependencies.
-
-Install dependencies with `python -m pip install -r requirements.txt`. The repository is currently a research scaffold; datasets, notebooks and final results are not yet included. Do not interpret the scaffold as completed empirical research.
-
-Related project: [CivicLens Africa](https://github.com/samuel6183/CivicLens-Africa).
+[GitHub profile](https://github.com/samuel6183) · [LinkedIn](https://www.linkedin.com/in/samuel-ndungu-6800b8194/)
