@@ -62,3 +62,16 @@ Currently under development.
 BSc Actuarial Science | MSc Data Science
 
 GitHub: https://github.com/samuel6183
+
+## Repository layout
+
+- `data/raw/`: original source files, kept unchanged.
+- `data/processed/`: validated and merged datasets.
+- `notebooks/`: exploratory and reproducible analysis notebooks.
+- `src/`: reusable analysis code.
+- `outputs/figures/` and `outputs/tables/`: generated research outputs.
+- `requirements.txt`: Python dependencies.
+
+Install dependencies with `python -m pip install -r requirements.txt`. The repository is currently a research scaffold; datasets, notebooks and final results are not yet included. Do not interpret the scaffold as completed empirical research.
+
+Related project: [CivicLens Africa](https://github.com/samuel6183/CivicLens-Africa).
