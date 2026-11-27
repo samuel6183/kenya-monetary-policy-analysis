@@ -1,0 +1,27 @@
+                            OLS Regression Results                            
+==============================================================================
+Dep. Variable:              d_LENDING   R-squared:                       0.489
+Model:                            OLS   Adj. R-squared:                  0.475
+Method:                 Least Squares   F-statistic:                     24.78
+Date:                Fri, 27 Nov 2026   Prob (F-statistic):           2.14e-12
+Time:                        01:10:05   Log-Likelihood:                 88.911
+No. Observations:                 117   AIC:                            -169.8
+Df Residuals:                     113   BIC:                            -158.8
+Df Model:                           3                                         
+Covariance Type:                  HAC                                         
+=======================================================================================
+                          coef    std err          z      P>|z|      [0.025      0.975]
+---------------------------------------------------------------------------------------
+const                   0.0053      0.009      0.601      0.548      -0.012       0.023
+d_CENTRAL_BANK_RATE     0.1778      0.034      5.297      0.000       0.112       0.244
+d_LENDING               0.5060      0.102      4.967      0.000       0.306       0.706
+d_INFLATION_YOY        -0.0145      0.011     -1.320      0.187      -0.036       0.007
+==============================================================================
+Omnibus:                       13.381   Durbin-Watson:                   2.409
+Prob(Omnibus):                  0.001   Jarque-Bera (JB):               43.315
+Skew:                          -0.086   Prob(JB):                     3.93e-10
+Kurtosis:                       5.976   Cond. No.                         6.80
+==============================================================================
+
+Notes:
+[1] Standard Errors are heteroscedasticity and autocorrelation robust (HAC) using 6 lags and without small sample correction
