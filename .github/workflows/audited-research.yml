@@ -1,0 +1,24 @@
+name: Audited empirical research
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - 'src/research.py'
+      - 'data/processed/kenya_monetary_policy_audited.csv'
+      - '.github/workflows/audited-research.yml'
+permissions:
+  contents: read
+jobs:
+  research:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - run: pip install numpy==1.26.4 pandas==2.2.3 matplotlib==3.10.0 scipy==1.15.2 statsmodels==0.14.6
+      - run: python -m src.research
+      - uses: actions/upload-artifact@v4
+        with:
+          name: audited-research-results
+          path: outputs/audited/
