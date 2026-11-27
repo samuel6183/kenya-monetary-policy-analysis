@@ -4,6 +4,8 @@ on:
   push:
     paths:
       - '.github/workflows/publish-paper.yml'
+      - 'scripts/build_paper.py'
+      - 'RESEARCH_PAPER.md'
 concurrency:
   group: consolidated-publication
   cancel-in-progress: true
