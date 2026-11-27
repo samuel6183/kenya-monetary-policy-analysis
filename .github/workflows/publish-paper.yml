@@ -4,6 +4,9 @@ on:
   push:
     paths:
       - '.github/workflows/publish-paper.yml'
+concurrency:
+  group: consolidated-publication
+  cancel-in-progress: true
 permissions:
   contents: write
   actions: read
@@ -55,6 +58,7 @@ jobs:
           git add -f RESEARCH_PAPER.pdf notebooks/Research_Analysis.ipynb outputs/audited
           if ! git diff --cached --quiet; then
             git commit -m "Publish complete working paper, executed notebook and research outputs"
+            git pull --rebase origin main
             git push origin HEAD:main
           fi
       - uses: actions/upload-artifact@v4
