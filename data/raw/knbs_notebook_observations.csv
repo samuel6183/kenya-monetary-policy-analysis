@@ -1,0 +1,5 @@
+DATE,KENYA_CPI,INFLATION_YOY,CPI_BASE,SOURCE_URL,CPI_TABLE_PAGE,INFLATION_TABLE_PAGE
+2022-06-01,124.22,7.91,February 2019=100,https://repository.knbs.or.ke/server/api/core/items/14e78d5d-dd08-4eb4-9d87-16ee235a169c,8,9
+2023-09-01,135.32,6.78,February 2019=100,https://repository.knbs.or.ke/server/api/core/items/7b883a5f-007a-4b77-aaea-5f48406efda7,9,10
+2026-03-01,150.00,4.39,February 2019=100,https://repository.knbs.or.ke/server/api/core/items/1d44477b-51e7-4a63-ae0d-ea57145888f8,9,10
+2026-06-01,154.91,6.41,February 2019=100,https://repository.knbs.or.ke/server/api/core/items/ad03f83d-4c91-4928-b0c2-475b46a4a65a,9,10
