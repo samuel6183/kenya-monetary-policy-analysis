@@ -14,6 +14,19 @@
 
 ---
 
+
+## Audited data release — 27 November 2026
+
+**[Download the canonical research dataset](data/processed/kenya_monetary_policy_audited.csv)** · [Data audit and reconciliation](docs/data-audit-2026-11-27.md) · [CPI source manifest](data/processed/cpi_source_manifest.csv)
+
+119 consecutive months (November 2016–September 2026), 14 economic series, complete CBR, lending, CPI and annual inflation. 74 missing values remain confined to three secondary series; no imputation. CPI levels retain the published base periods and must not be treated as a linked index. The release is source-reconciled and internally checked, not an external audit certification. Earlier policy/inflation forecasts are preliminary and superseded; use this canonical file for new analysis.
+
+```bash
+python -m pip install -r requirements.txt
+python -m src.audit_dataset
+python -m src.analysis --input data/processed/kenya_monetary_policy_audited.csv
+```
+
 ## What this project investigates
 
 The research examines how changes in the Central Bank Rate, Treasury bill yields, commercial lending rates and inflation interact over time.
@@ -81,13 +94,13 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-The collection, preparation and econometric code is implemented. The earlier combined Colab CSV is not present in this repository; official-data coverage and empirical results remain unverified. Synthetic tests are not evidence about Kenya's economy.
+The original notebook collection methodology has been restored and the canonical audited data release is available above. Updated econometric outputs must be generated from that release. Synthetic tests are not evidence about Kenya's economy.
 
 ## Development milestones
 
 - [x] Define research objectives and organize repository
 - [x] Identify primary institutional data sources
-- [ ] Publish verified data and source documentation
+- [x] Publish source-reconciled data and audit documentation
 - [ ] Complete exploratory analysis and stationarity checks
 - [ ] Estimate and validate models
 - [ ] Publish figures, tables and reproducibility instructions
