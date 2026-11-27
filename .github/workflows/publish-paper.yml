@@ -1,0 +1,66 @@
+name: Publish consolidated research paper
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - '.github/workflows/publish-paper.yml'
+permissions:
+  contents: write
+  actions: read
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+      - uses: actions/download-artifact@v4
+        with:
+          name: audited-research-results
+          run-id: 45920954623
+          github-token: ${{ github.token }}
+          path: outputs/audited
+      - name: Verify audited artifact and figure coverage
+        run: |
+          python - <<'PY'
+          import json,hashlib
+          from pathlib import Path
+          p=Path('data/processed/kenya_monetary_policy_audited.csv')
+          r=json.loads(Path('outputs/audited/tables/run.json').read_text())
+          assert hashlib.sha256(p.read_bytes()).hexdigest()==r['sha256']
+          assert len(list(Path('outputs/audited/figures').glob('*.svg')))==10
+          PY
+      - name: Install research and publication dependencies
+        run: |
+          sudo apt-get update -qq
+          sudo apt-get install -y -qq libpango-1.0-0 libpangoft2-1.0-0 libharfbuzz-subset0
+          pip install numpy==1.26.4 pandas==2.2.3 matplotlib==3.10.0 scipy==1.15.2 statsmodels==0.14.6 markdown weasyprint nbformat nbclient ipykernel
+      - name: Render paper and execute notebook
+        run: |
+          python scripts/build_paper.py
+          python - <<'PY'
+          import nbformat
+          from nbclient import NotebookClient
+          from pathlib import Path
+          p=Path('notebooks/Research_Analysis.ipynb')
+          nb=nbformat.read(p,as_version=4)
+          NotebookClient(nb,timeout=240,kernel_name='python3',resources={'metadata':{'path':str(Path.cwd())}}).execute()
+          nbformat.write(nb,p)
+          PY
+      - name: Publish verified research files
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -f RESEARCH_PAPER.pdf notebooks/Research_Analysis.ipynb outputs/audited
+          if ! git diff --cached --quiet; then
+            git commit -m "Publish complete working paper, executed notebook and research outputs"
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        with:
+          name: consolidated-research-paper
+          path: |
+            RESEARCH_PAPER.pdf
+            notebooks/Research_Analysis.ipynb
+            outputs/audited/
