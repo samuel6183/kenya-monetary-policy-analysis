@@ -133,3 +133,9 @@ python -m src.analysis
 Alternatively supply official-source CSVs as separate inputs to src.prepare, including manually verified KNBS inflation observations. Inspect coverage.csv, conflicts.csv and missing_core.csv before modelling. The analysis refuses incomplete core series rather than interpolate them. See [methodology](docs/methodology.md).
 
 Generated tables and plots are saved under outputs/. GitHub Actions runs synthetic unit and integration tests. Manually dispatch the workflow to retrieve official-source candidates as an artifact; pagination and PDF numeric verification remain explicit data-quality gates.
+
+## Empirical results — 27 November 2026
+
+[Research findings and limitations](docs/empirical-results-2026-11-27.md) · [Historical figures](outputs/audited/figures/) · [Statistical results](outputs/audited/tables/) · [Reproducible analysis](src/research.py)
+
+Executed on the audited dataset: 119 months, 14 indicators, dynamic HAC regressions, stationarity tests, VAR diagnostics and five chronological forecast models. Lagged CBR change is positively associated with lending-rate change. VAR is stable but fails residual tests; causal claims are not supported. Forecast performance differences are small. Reproduce all ten charts and tables with `python -m src.research` or the Audited empirical research workflow. Earlier results are superseded.
