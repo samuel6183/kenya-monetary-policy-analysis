@@ -11,7 +11,9 @@
 ![Methods](https://img.shields.io/badge/Methods-Econometrics-405c87)
 [![Reproduction workflow](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/workflows/audited-research.yml/badge.svg)](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/workflows/audited-research.yml)
 
-**[Read the complete research paper](RESEARCH_PAPER.md)** · **[Explore the Python notebook](notebooks/Research_Analysis.ipynb)** · **[Canonical dataset](data/processed/kenya_monetary_policy_audited.csv)**
+**[Download the complete research paper (PDF)](RESEARCH_PAPER.pdf)** · **[Read online](RESEARCH_PAPER.md)** · **[Explore the executed notebook](notebooks/Research_Analysis.ipynb)** · **[Canonical dataset](data/processed/kenya_monetary_policy_audited.csv)**
+
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/samuel6183/kenya-monetary-policy-analysis/blob/main/notebooks/Research_Analysis.ipynb)
 
 </div>
 
@@ -58,11 +60,15 @@ One-month-ahead expanding-window evaluation, October 2024–September 2026. Erro
 | Persistence | 0.2858 | 0.4255 |
 | Seasonal naive | 1.9171 | 2.2325 |
 
+![Forecast holdout](outputs/audited/figures/forecast_holdout.svg)
+
+*Figure 3. Actual and predicted inflation in the 24-month holdout.*
+
 The differences between leading models are small. The VAR is a separate fixed forecast specification from the BIC-selected VAR(1) diagnostic model. No statistically established superiority is claimed.
 
 ## Read the research in order
 
-The **[full paper](RESEARCH_PAPER.md)** contains the complete narrative, results, integrated figures, references and reproducibility appendix. The **[Python notebook](notebooks/Research_Analysis.ipynb)** presents the original analytical code in seven sequential, explained stages, from integrity checks through forecasting. The **[successful empirical workflow](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/runs/45920954623)** generated ten figures and full statistical tables.
+The **[PDF paper](RESEARCH_PAPER.pdf)** and **[online paper](RESEARCH_PAPER.md)** contain the complete narrative, results, integrated figures, references and reproducibility appendix. The **[executed Python notebook](notebooks/Research_Analysis.ipynb)** presents the original analytical code in seven sequential, explained stages, from integrity checks through forecasting, with saved tables and charts. The **[successful empirical workflow](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/runs/45920954623)** generated ten figures and full statistical tables.
 
 ## Data integrity and limitations
 
@@ -91,7 +97,8 @@ The dataset checksum is verified before estimation. The code regenerates all ten
 <summary>Technical repository structure</summary>
 
 ```text
-RESEARCH_PAPER.md       Complete academic working paper
+RESEARCH_PAPER.pdf      Downloadable academic working paper
+RESEARCH_PAPER.md       Online version with all integrated figures
 notebooks/              Sequential reproduction notebook
 data/processed/         Canonical dataset and source manifest
 data/raw/               Source observations and collection inputs
