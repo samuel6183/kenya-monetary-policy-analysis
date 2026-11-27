@@ -1,9 +1,18 @@
 """Render the repository working paper with integrated chart SVGs."""
 from pathlib import Path
 import markdown
+import re
 from weasyprint import HTML
 root=Path(__file__).resolve().parents[1]
 body=markdown.markdown((root/"RESEARCH_PAPER.md").read_text(),extensions=["tables","fenced_code","toc"])
+repo="https://github.com/samuel6183/kenya-monetary-policy-analysis"
+def public_href(match):
+    href=match.group(1)
+    if href.startswith(("#","https://","http://","mailto:")):
+        return match.group(0)
+    route="tree" if href.endswith("/") else "blob"
+    return f'href="{repo}/{route}/main/{href}"'
+body=re.sub(r'href="([^"]+)"',public_href,body)
 css="""
 @page { size: A4; margin: 19mm 19mm 20mm; @bottom-left { content: "KENYA MONETARY POLICY | WORKING PAPER"; font-size: 8pt; color: #62717c; } @bottom-right { content: counter(page) " / " counter(pages); font-size: 9pt; color: #62717c; } }
 body { font-family: 'DejaVu Sans', sans-serif; color:#243541; font-size:10pt; line-height:1.55; }
@@ -19,4 +28,4 @@ tr { break-inside:avoid; } tr:nth-child(even) td { background:#f2f6f7; }
 pre { background:#f2f6f7; padding:4mm; white-space:pre-wrap; overflow-wrap:anywhere; font-size:8.5pt; }
 li { margin:1mm 0; } 
 """
-HTML(string=f'<!doctype html><html lang="en"><head><meta charset="utf-8"><style>{css}</style></head><body>{body}</body></html>',base_url=str(root)+"/").write_pdf(root/"RESEARCH_PAPER.pdf")
+HTML(string=f'<!doctype html><html lang="en"><head><meta charset="utf-8"><title>Monetary Policy Transmission in Kenya</title><meta name="author" content="Samuel Ndungu Njoroge"><style>{css}</style></head><body>{body}</body></html>',base_url=str(root)+"/").write_pdf(root/"RESEARCH_PAPER.pdf")
