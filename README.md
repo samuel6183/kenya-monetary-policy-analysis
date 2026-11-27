@@ -8,7 +8,7 @@
 
 **Investigating monetary policy transmission in Kenya using monthly macroeconomic and financial data.**
 
-[Analysis scaffold](src/analysis.py) · [Data directories](data/) · [CivicLens Africa](https://github.com/samuel6183/CivicLens-Africa)
+[Analysis engine](src/analysis.py) · [Data directories](data/) · [CivicLens Africa](https://github.com/samuel6183/CivicLens-Africa)
 
 </div>
 
@@ -20,7 +20,7 @@ The research examines how changes in the Central Bank Rate, Treasury bill yields
 
 > How do monetary policy adjustments relate to commercial lending costs and inflation? What role do short-term government securities play in the transmission mechanism?
 
-**Target study period:** November 2016 – October 2026, subject to verified data availability.
+**Target study period:** November 2016 – September 2026, subject to verified data availability.
 
 ## Research workstreams
 
@@ -66,7 +66,7 @@ data/
   processed/    Validated monthly datasets
 notebooks/      Research notebooks
 src/
-  analysis.py   Analysis scaffold
+  analysis.py   Econometric analysis
 outputs/
   figures/      Generated charts
   tables/       Statistical outputs
@@ -81,7 +81,7 @@ python -m venv .venv
 pip install -r requirements.txt
 ```
 
-The repository currently contains the research scaffold, not the complete empirical pipeline. Verified data, notebooks and final results have not yet been uploaded. No statistical conclusions are presented as established findings.
+The collection, preparation and econometric code is implemented. The earlier combined Colab CSV is not present in this repository; official-data coverage and empirical results remain unverified. Synthetic tests are not evidence about Kenya's economy.
 
 ## Development milestones
 
@@ -98,3 +98,25 @@ The repository currently contains the research scaffold, not the complete empiri
 BSc Actuarial Science · MSc Data Science (in progress)
 
 [GitHub profile](https://github.com/samuel6183) · [LinkedIn](https://www.linkedin.com/in/samuel-ndungu-6800b8194/)
+
+## Run the research pipeline
+
+From the repository root:
+
+```bash
+python -m pip install -r requirements.txt
+python -m unittest discover -s tests -v
+python -m src.collect cbk
+python -m src.collect knbs
+```
+
+For your existing Colab dataset, place kenya_monetary_policy_combined.csv in data/raw, then run:
+
+```bash
+python -m src.prepare data/raw/kenya_monetary_policy_combined.csv
+python -m src.analysis
+```
+
+Alternatively supply official-source CSVs as separate inputs to src.prepare, including manually verified KNBS inflation observations. Inspect coverage.csv, conflicts.csv and missing_core.csv before modelling. The analysis refuses incomplete core series rather than interpolate them. See [methodology](docs/methodology.md).
+
+Generated tables and plots are saved under outputs/. GitHub Actions runs synthetic unit and integration tests. Manually dispatch the workflow to retrieve official-source candidates as an artifact; pagination and PDF numeric verification remain explicit data-quality gates.
