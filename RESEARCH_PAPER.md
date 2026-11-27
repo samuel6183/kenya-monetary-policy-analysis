@@ -112,7 +112,15 @@ Both regressions use 117 observations. The conditional lending coefficient on la
 | Lending | .4183 | .0535 | .10 |
 | Inflation | .2460 | .0040 | .10 |
 
-The tests are mixed for CBR and lending. BIC selects VAR(1); AIC selects lag two. The fitted VAR(1) has 117 observations, maximum companion eigenvalue .6912, and is stable. Residual whiteness is rejected (p=.000531); normality is strongly rejected. Stability alone is insufficient to validate inference. The [full artifact](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/runs/45920954623/artifacts/15163858210) contains the impulse responses and correlation heatmap, together with coefficient and diagnostic tables.
+The tests are mixed for CBR and lending. BIC selects VAR(1); AIC selects lag two. The fitted VAR(1) has 117 observations, maximum companion eigenvalue .6912, and is stable. Residual whiteness is rejected (p=.000531); normality is strongly rejected. Stability alone is insufficient to validate inference. The following figures describe changes and non-orthogonal impulse responses. The confidence bands should be treated with caution because residual diagnostics fail.
+
+![Change correlations](outputs/audited/figures/change_correlations.svg)
+
+*Figure 7. Correlation of first monthly differences; descriptive, not causal.*
+
+![VAR impulse responses](outputs/audited/figures/var_impulse_responses.svg)
+
+*Figure 8. Exploratory VAR(1) non-orthogonal impulse responses; not identified policy shocks.*
 
 ### 4.4 Forecasting
 
@@ -124,7 +132,14 @@ The tests are mixed for CBR and lending. BIC selects VAR(1); AIC selects lag two
 | Persistence | .2858 | .4255 |
 | Seasonal naive | 1.9171 | 2.2325 |
 
-VAR(2) gives the lowest RMSE and AR(1) the lowest MAE. ARIMA is nearly tied with VAR on RMSE; the modest differences and short evaluation period do not establish superiority. All ARIMA fits converged. The workflow artifact contains the actual-versus-predicted chart and forecast comparison figure.
+VAR(2) gives the lowest RMSE and AR(1) the lowest MAE. ARIMA is nearly tied with VAR on RMSE; the modest differences and short evaluation period do not establish superiority. All ARIMA fits converged. 
+![Actual and predicted inflation](outputs/audited/figures/forecast_holdout.svg)
+
+*Figure 9. Actual and one-month-ahead predicted inflation over the chronological holdout.*
+
+![Forecast error comparison](outputs/audited/figures/forecast_comparison.svg)
+
+*Figure 10. MAE and RMSE, percentage points.*
 
 ## 5. Discussion
 
