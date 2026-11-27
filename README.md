@@ -1,141 +1,109 @@
 <div align="center">
 
-# Kenya Monetary Policy Analysis
+# Monetary Policy Transmission in Kenya
 
-### Applied Econometrics & Macroeconomic Intelligence
+### Interest-rate dynamics and inflation forecasting | 2016–2026
 
-![Python: Research](https://img.shields.io/badge/Python-Research-3776ab?style=for-the-badge) ![Pandas: Time series](https://img.shields.io/badge/Pandas-Time%20series-150458?style=for-the-badge) ![Statsmodels: Econometrics](https://img.shields.io/badge/Statsmodels-Econometrics-6941c6?style=for-the-badge) ![Domain: Monetary policy](https://img.shields.io/badge/Domain-Monetary%20policy-0f766e?style=for-the-badge) ![Status: In progress](https://img.shields.io/badge/Status-In%20progress-b7791f?style=for-the-badge)
+**Samuel Ndungu Njoroge** · Independent empirical research working paper
 
-**Investigating monetary policy transmission in Kenya using monthly macroeconomic and financial data.**
+![Monthly observations](https://img.shields.io/badge/Monthly%20observations-119-17698a)
+![Data](https://img.shields.io/badge/Data-CBK%20%2B%20KNBS-0d766e)
+![Methods](https://img.shields.io/badge/Methods-Econometrics-405c87)
+[![Reproduction workflow](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/workflows/audited-research.yml/badge.svg)](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/workflows/audited-research.yml)
 
-[Analysis engine](src/analysis.py) · [Data directories](data/) · [CivicLens Africa](https://github.com/samuel6183/CivicLens-Africa)
+**[Read the complete research paper](RESEARCH_PAPER.md)** · **[Explore the Python notebook](notebooks/Research_Analysis.ipynb)** · **[Canonical dataset](data/processed/kenya_monetary_policy_audited.csv)**
 
 </div>
 
----
+## Abstract
 
+This study investigates short-run monetary policy transmission and inflation prediction in Kenya using official CBK and KNBS data for 119 consecutive months from November 2016 to September 2026. It integrates source reconciliation, HAC dynamic regressions, stationarity tests, reduced-form VAR diagnostics and a five-model chronological forecasting evaluation.
 
-## Audited data release — 27 November 2026
+A one-percentage-point lagged change in the Central Bank Rate (CBR) is associated with a 0.178 percentage-point change in commercial lending rates, conditional on the included lagged variables. However, the lending regression has residual autocorrelation and the VAR fails residual whiteness and normality tests. Forecast rankings are metric-dependent, and no causal claim or structural shock identification is made.
 
-**[Download the canonical research dataset](data/processed/kenya_monetary_policy_audited.csv)** · [Data audit and reconciliation](docs/data-audit-2026-11-27.md) · [CPI source manifest](data/processed/cpi_source_manifest.csv)
+## Key empirical findings
 
-119 consecutive months (November 2016–September 2026), 14 economic series, complete CBR, lending, CPI and annual inflation. 74 missing values remain confined to three secondary series; no imputation. CPI levels retain the published base periods and must not be treated as a linked index. The release is source-reconciled and internally checked, not an external audit certification. Earlier policy/inflation forecasts are preliminary and superseded; use this canonical file for new analysis.
+| Research result | Estimate |
+|---|---:|
+| Observations | 119 months |
+| Economic indicators | 14 |
+| Data completeness | 95.56% |
+| Lagged CBR coefficient in lending-change regression | 0.1778 |
+| HAC 95% confidence interval | [0.1120, 0.2436] |
+| Lending regression R² | 0.4885 |
+| VAR residual whiteness p-value | 0.000531 |
+| Forecast evaluation | 24 months |
+
+## Historical monetary policy and lending dynamics
+
+![Central Bank Rate, commercial lending and inflation](outputs/audited/figures/policy_transmission.svg)
+
+*Figure 1. Monthly national interest rates and year-on-year inflation, sourced from the canonical CBK/KNBS dataset.*
+
+The chart illustrates policy cycles and lending-rate adjustment. It does not identify exogenous policy shocks.
+
+![Lending spread](outputs/audited/figures/lending_spread.svg)
+
+*Figure 2. Weighted commercial lending rate less the CBR, percentage points.*
+
+## Forecast performance
+
+One-month-ahead expanding-window evaluation, October 2024–September 2026. Errors in percentage points.
+
+| Model | MAE | RMSE |
+|---|---:|---:|
+| VAR(2) | 0.2704 | **0.3940** |
+| ARIMA(1,1,0) | 0.2832 | 0.3945 |
+| AR(1) | **0.2692** | 0.4199 |
+| Persistence | 0.2858 | 0.4255 |
+| Seasonal naive | 1.9171 | 2.2325 |
+
+The differences between leading models are small. The VAR is a separate fixed forecast specification from the BIC-selected VAR(1) diagnostic model. No statistically established superiority is claimed.
+
+## Read the research in order
+
+The **[full paper](RESEARCH_PAPER.md)** contains the complete narrative, results, integrated figures, references and reproducibility appendix. The **[Python notebook](notebooks/Research_Analysis.ipynb)** presents the original analytical code in seven sequential, explained stages, from integrity checks through forecasting. The **[successful empirical workflow](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/runs/45920954623)** generated ten figures and full statistical tables.
+
+## Data integrity and limitations
+
+- Source-reconciled official data, 119 unique months and no imputation; 74 numeric gaps remain confined to three secondary rate series.
+- CPI base periods are retained separately; no fabricated linking or cross-base comparison.
+- Lending regression residual autocorrelation and VAR diagnostic failures are explicitly reported. The inflation regression does not reject the Ljung–Box test at 5% at six and twelve lags, although the twelve-lag result is borderline.
+- Estimates are retrospective, associative and not causal. No independent external audit or institutional endorsement is claimed.
+- National macroeconomic indicators provide background for agricultural finance and household purchasing power research; sector-specific effects require additional data.
+
+[Data audit report](docs/data-audit-2026-11-27.md) · [CPI provenance](data/processed/cpi_source_manifest.csv) · [Detailed empirical results](docs/empirical-results-2026-11-27.md)
+
+## Reproduce the research
 
 ```bash
-python -m pip install -r requirements.txt
+git clone https://github.com/samuel6183/kenya-monetary-policy-analysis.git
+cd kenya-monetary-policy-analysis
+# Python 3.11 environment
+pip install numpy==1.26.4 pandas==2.2.3 matplotlib==3.10.0 scipy==1.15.2 statsmodels==0.14.6
 python -m src.audit_dataset
-python -m src.analysis --input data/processed/kenya_monetary_policy_audited.csv
+python -m src.research
 ```
 
-## What this project investigates
+The dataset checksum is verified before estimation. The code regenerates all ten figures and statistical tables. Earlier preliminary two-series results are superseded.
 
-The research examines how changes in the Central Bank Rate, Treasury bill yields, commercial lending rates and inflation interact over time.
-
-> How do monetary policy adjustments relate to commercial lending costs and inflation? What role do short-term government securities play in the transmission mechanism?
-
-**Target study period:** November 2016 – September 2026, subject to verified data availability.
-
-## Research workstreams
-
-| Workstream | Research objective |
-| :--- | :--- |
-| Monetary policy | Examine historical movements in policy rates and liquidity conditions |
-| Banking transmission | Analyse the relationship between the CBR and commercial lending rates |
-| Inflation | Investigate the relationship between monetary policy and consumer prices |
-| Government securities | Examine interactions between Treasury bill yields and monetary policy |
-| Econometric modelling | Evaluate time-series properties, estimate relationships and conduct diagnostic tests |
-
-## Planned dataset
-
-| Variable | Intended source | Frequency |
-| :--- | :--- | :--- |
-| Central Bank Rate | [CBK](https://www.centralbank.go.ke/) | Monthly |
-| Commercial lending rates | CBK | Monthly |
-| Interbank rate | CBK | Monthly |
-| 91-, 182- and 364-day Treasury bill yields | CBK | Monthly |
-| Consumer price index and inflation | [KNBS](https://www.knbs.or.ke/) | Monthly |
-
-World Bank and IMF data may supplement the analysis where definitions and frequencies are compatible.
-
-## Analytical methodology
-
-```mermaid
-flowchart LR
-  A[Official sources] --> B[Validation]
-  B --> C[Monthly dataset]
-  C --> D[Exploratory analysis]
-  D --> E[Stationarity and model selection]
-  E --> F[Estimation and diagnostics]
-  F --> G[Economic interpretation]
-```
-
-Planned techniques include descriptive statistics, time-series plots, stationarity testing, regression and appropriate dynamic econometric models. Model choice will depend on the actual data properties; causal claims require additional identification assumptions.
-
-## Repository structure
+<details>
+<summary>Technical repository structure</summary>
 
 ```text
-data/
-  raw/          Original source files
-  processed/    Validated monthly datasets
-notebooks/      Research notebooks
-src/
-  analysis.py   Econometric analysis
-outputs/
-  figures/      Generated charts
-  tables/       Statistical outputs
-requirements.txt
+RESEARCH_PAPER.md       Complete academic working paper
+notebooks/              Sequential reproduction notebook
+data/processed/         Canonical dataset and source manifest
+data/raw/               Source observations and collection inputs
+src/                    Collection, audit and analysis code
+outputs/audited/        Figures and statistical tables
+docs/                   Audit trail and research notes
+tests/                  Automated checks
+.github/workflows/      Reproducibility and publication workflows
 ```
 
-## Reproducibility
+</details>
 
-```bash
-python -m venv .venv
-# Activate the virtual environment for your OS.
-pip install -r requirements.txt
-```
+**Researcher:** [GitHub](https://github.com/samuel6183) · [LinkedIn](https://www.linkedin.com/in/samuel-ndungu-6800b8194/)
 
-The original notebook collection methodology has been restored and the canonical audited data release is available above. Updated econometric outputs must be generated from that release. Synthetic tests are not evidence about Kenya's economy.
-
-## Development milestones
-
-- [x] Define research objectives and organize repository
-- [x] Identify primary institutional data sources
-- [x] Publish source-reconciled data and audit documentation
-- [ ] Complete exploratory analysis and stationarity checks
-- [ ] Estimate and validate models
-- [ ] Publish figures, tables and reproducibility instructions
-
-## Researcher
-
-**Samuel Ndungu Njoroge**  
-BSc Actuarial Science · MSc Data Science (in progress)
-
-[GitHub profile](https://github.com/samuel6183) · [LinkedIn](https://www.linkedin.com/in/samuel-ndungu-6800b8194/)
-
-## Run the research pipeline
-
-From the repository root:
-
-```bash
-python -m pip install -r requirements.txt
-python -m unittest discover -s tests -v
-python -m src.collect cbk
-python -m src.collect knbs
-```
-
-For your existing Colab dataset, place kenya_monetary_policy_combined.csv in data/raw, then run:
-
-```bash
-python -m src.prepare data/raw/kenya_monetary_policy_combined.csv
-python -m src.analysis
-```
-
-Alternatively supply official-source CSVs as separate inputs to src.prepare, including manually verified KNBS inflation observations. Inspect coverage.csv, conflicts.csv and missing_core.csv before modelling. The analysis refuses incomplete core series rather than interpolate them. See [methodology](docs/methodology.md).
-
-Generated tables and plots are saved under outputs/. GitHub Actions runs synthetic unit and integration tests. Manually dispatch the workflow to retrieve official-source candidates as an artifact; pagination and PDF numeric verification remain explicit data-quality gates.
-
-## Empirical results — 27 November 2026
-
-[Research findings and limitations](docs/empirical-results-2026-11-27.md) · [Historical figures](outputs/audited/figures/) · [Statistical results](outputs/audited/tables/) · [Reproducible analysis](src/research.py)
-
-Executed on the audited dataset: 119 months, 14 indicators, dynamic HAC regressions, stationarity tests, VAR diagnostics and five chronological forecast models. Lagged CBR change is positively associated with lending-rate change. VAR is stable but fails residual tests; causal claims are not supported. Forecast performance differences are small. Reproduce all ten charts and tables with `python -m src.research` or the Audited empirical research workflow. Earlier results are superseded.
+*Independent working paper, not peer reviewed, not an ILRI study. AI assistance was used in organizing and implementing the research. Review all results before academic submission.*
