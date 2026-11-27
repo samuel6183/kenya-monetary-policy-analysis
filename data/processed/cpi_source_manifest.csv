@@ -1,0 +1,11 @@
+START,END,REPORT_UUID,PDF_PAGE,SHA256,SOURCE_URL
+2016-11,2016-11,7100ac25-75d8-42ed-8534-f8e480cd79fb,7,1b4d57de9cfd72a6173755dcb023cc3b3121ae0afcd71823469580c15f816b08,https://repository.knbs.or.ke/server/api/core/items/7100ac25-75d8-42ed-8534-f8e480cd79fb
+2016-12,2016-12,874c3216-9720-4946-a880-8200fd5565cc,7,ce42f9cfed5092961e057bf200c86910e831469a889789bf543912d8893ed2f1,https://repository.knbs.or.ke/server/api/core/items/874c3216-9720-4946-a880-8200fd5565cc
+2017-01,2018-12,ae6ddac6-9617-4761-9ee5-7e5c0dccbed3,8,e0a773af3bced4355e2f30a8616ab728c4b9329fe3cc58d7c4a95549906f4091,https://repository.knbs.or.ke/server/api/core/items/ae6ddac6-9617-4761-9ee5-7e5c0dccbed3
+2019-01,2020-01,32483db0-3ce7-4dd3-8f09-e954711d3957,8,7401da384ee44a16ebc173ed038398814f99d75717c5515c310a166ab3016c63,https://repository.knbs.or.ke/server/api/core/items/32483db0-3ce7-4dd3-8f09-e954711d3957
+2020-02,2021-12,6afebf8d-d2b7-4523-82b6-50cdec611f6e,8,44aeb5e12b5810b1c75670222dc01504cd1b9deab67f63f6d26d02239680863d,https://repository.knbs.or.ke/server/api/core/items/6afebf8d-d2b7-4523-82b6-50cdec611f6e
+2022-01,2023-12,0c2412d8-979e-4683-850a-80cdf30b317e,9,a82c62e14d217255e0ab6418ee6b692cd90991a329082931b406d802cda98948,https://repository.knbs.or.ke/server/api/core/items/0c2412d8-979e-4683-850a-80cdf30b317e
+2024-01,2025-08,061e6301-8829-4c4e-b80f-7e9797a85659,9,158305885ad406628e6d2d5636416e232b6d4da7c5b03529eb7acca639ac195d,https://repository.knbs.or.ke/server/api/core/items/061e6301-8829-4c4e-b80f-7e9797a85659
+2025-09,2025-12,1041e02c-3288-4dc8-a8b1-a33c20c8c4d6,9,f91b29bb887a23091dffd9d77543d02d050448da1021a64e4302383d84714dc7,https://repository.knbs.or.ke/server/api/core/items/1041e02c-3288-4dc8-a8b1-a33c20c8c4d6
+2026-01,2026-08,1330f453-bdec-48d3-b8d7-3e3ee0999111,9,ab991013dc1c4567ca123f66a25e735f7545eaec4959662d189538cf4de0e5b4,https://repository.knbs.or.ke/server/api/core/items/1330f453-bdec-48d3-b8d7-3e3ee0999111
+2026-09,2026-09,KNBS_LEI_2026_09,9,,https://www.knbs.or.ke/wp-content/uploads/2026/11/Kenya-Leading-Economic-Indicators-September-2026.pdf
