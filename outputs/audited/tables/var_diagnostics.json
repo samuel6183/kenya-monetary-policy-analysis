@@ -1,0 +1,9 @@
+{
+  "bic_selected": 1,
+  "fitted_lag": 1,
+  "n": 117,
+  "stable": true,
+  "whiteness_p": 0.0005313714986816597,
+  "normality_p": 1.9314915421528395e-255,
+  "max_companion_eigenvalue": 0.6911984806110194
+}
