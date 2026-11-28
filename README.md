@@ -114,3 +114,9 @@ tests/                  Automated checks
 **Researcher:** [GitHub](https://github.com/samuel6183) · [LinkedIn](https://www.linkedin.com/in/samuel-ndungu-6800b8194/)
 
 *Independent working paper, not peer reviewed, not an ILRI study. AI assistance was used in organizing and implementing the research. Review all results before academic submission.*
+
+## Verification status
+
+[![Monetary policy validation](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/workflows/validate.yml/badge.svg)](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/workflows/validate.yml)
+
+[Latest successful validation inspected on 28 November 2026](https://github.com/samuel6183/kenya-monetary-policy-analysis/actions/runs/45922497369). This is evidence of automated workflow execution, not independent scientific replication or a verified public deployment.
